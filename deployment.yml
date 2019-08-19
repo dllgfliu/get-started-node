@@ -5,6 +5,9 @@ metadata:
   name: get-started-node
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: get-started-node
   template:
     metadata:
       labels:
