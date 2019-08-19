@@ -3,6 +3,7 @@ FROM node:6-alpine
 ADD views /app/views
 ADD package.json /app
 ADD server.js /app/server.js
+ADD vcap-local.json /app/vcap-local.json
 
 RUN cd /app; npm install
 
