@@ -3,13 +3,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: get-started-node
-  labels:
-    app: get-started-node
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: get-started-node
   template:
     metadata:
       labels:
@@ -20,7 +15,6 @@ spec:
         image: myapp:v1.0.0
         ports:
         - containerPort: 8080
-        imagePullPolicy: Always
         env:
         - name: CLOUDANT_URL
           valueFrom:
@@ -28,3 +22,18 @@ spec:
               name: cloudant
               key: url
               optional: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: get-started-service
+  labels:
+    app: get-started-service
+spec:
+  type: NodePort
+  ports:
+    # the port that this service should serve on
+    - port: 8080
+  # label keys and values that must match in order to receive traffic for this service
+  selector:
+    app: get-started-node
