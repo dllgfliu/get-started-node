@@ -171,7 +171,7 @@ if (appEnv.services['compose-for-mongodb'] || appEnv.getService(/.*[Mm][Oo][Nn][
      cloudant = Cloudant(appEnv.getService(/cloudant/).credentials);
   }
 } else if (process.env.CLOUDANT_URL){
-  console.log("Load env.CLOUDANT_URL);
+  console.log("Load env.CLOUDANT_URL: " + process.env.CLOUDANT_URL);
   cloudant = Cloudant(process.env.CLOUDANT_URL);
 
 }
