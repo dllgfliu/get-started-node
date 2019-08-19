@@ -171,7 +171,7 @@ if (appEnv.services['compose-for-mongodb'] || appEnv.getService(/.*[Mm][Oo][Nn][
 }
 if(cloudant) {
   //database name
-  dbName = 'mydb';
+  dbName = 'hackday_db';
 
   // Create a new "mydb" database.
   cloudant.db.create(dbName, function(err, data) {
