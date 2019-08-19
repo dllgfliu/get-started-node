@@ -117,7 +117,9 @@ var vcapLocal;
 try {
   vcapLocal = require('./vcap-local.json');
   console.log("Loaded local VCAP", vcapLocal);
-} catch (e) { }
+} catch (e) {
+    console.log(e);
+}
 
 const appEnvOpts = vcapLocal ? { vcap: vcapLocal} : {}
 
@@ -158,6 +160,8 @@ if (appEnv.services['compose-for-mongodb'] || appEnv.getService(/.*[Mm][Oo][Nn][
   // Load the Cloudant library.
   var Cloudant = require('@cloudant/cloudant');
 
+  console.log("Load the Cloudant library");
+
   // Initialize database with credentials
   if (appEnv.services['cloudantNoSQLDB']) {
     // CF service named 'cloudantNoSQLDB'
@@ -167,11 +171,13 @@ if (appEnv.services['compose-for-mongodb'] || appEnv.getService(/.*[Mm][Oo][Nn][
      cloudant = Cloudant(appEnv.getService(/cloudant/).credentials);
   }
 } else if (process.env.CLOUDANT_URL){
+  console.log("Load env.CLOUDANT_URL);
   cloudant = Cloudant(process.env.CLOUDANT_URL);
+
 }
 if(cloudant) {
   //database name
-  dbName = 'hackday_db';
+  dbName = 'mydb';
 
   // Create a new "mydb" database.
   cloudant.db.create(dbName, function(err, data) {
