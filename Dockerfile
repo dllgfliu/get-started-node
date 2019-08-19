@@ -2,7 +2,7 @@ FROM node:6-alpine
 
 ADD views /app/views
 ADD package.json /app
-ADD server.js /app
+ADD server.js /app/server.js
 
 RUN cd /app; npm install
 
@@ -10,5 +10,6 @@ ENV NODE_ENV production
 ENV PORT 8080
 EXPOSE 8080
 
-WORKDIR "/app"
-CMD [ "npm", "start" ]
+# WORKDIR "/app"
+# CMD [ "npm", "start" ]
+CMD ["node", "/app/server.js"]
