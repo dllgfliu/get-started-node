@@ -115,7 +115,8 @@ app.get("/api/visitors", function (request, response) {
 // load local VCAP configuration  and service credentials
 var vcapLocal;
 try {
-  vcapLocal = require('./vcap-local.json');
+  //vcapLocal = require('./vcap-local.json');
+  import vcapLocal from ('./vcap-local.json')
   console.log("Loaded local VCAP", vcapLocal);
 } catch (e) {
     console.log(e);
