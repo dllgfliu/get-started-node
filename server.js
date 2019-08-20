@@ -1,7 +1,9 @@
 var express = require("express");
 var app = express();
 var cfenv = require("cfenv");
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+
+var fs = require('fs');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -116,7 +118,8 @@ app.get("/api/visitors", function (request, response) {
 var vcapLocal;
 try {
   //vcapLocal = require('./vcap-local.json');
-  import vcapLocal from ('./vcap-local.json')
+  vcapLocal = JSON.parse(fs.readFileSync('./vcap-local.json', 'utf8'));
+  //import vcapLocal from ('./vcap-local.json')
   console.log("Loaded local VCAP", vcapLocal);
 } catch (e) {
     console.log(e);
