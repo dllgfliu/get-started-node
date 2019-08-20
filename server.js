@@ -118,7 +118,7 @@ app.get("/api/visitors", function (request, response) {
 var vcapLocal;
 try {
   //vcapLocal = require('./vcap-local.json');
-  vcapLocal = JSON.parse(fs.readFileSync('./vcap-local.json', 'utf8'));
+  vcapLocal = JSON.parse(fs.readFileSync('/app/vcap-local.json', 'utf8'));
   //import vcapLocal from ('./vcap-local.json')
   console.log("Loaded local VCAP", vcapLocal);
 } catch (e) {
